@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,9 +128,22 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'veeratestpress@gmail.com'
-# EMAIL_HOST_PASSWORD = 'srvuervpiqjpotcl'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER='cecsharishv24@gmail.com'
+EMAIL_HOST_PASSWORD='defa ghzv xgvp xwis'   # The app password you generated from Google
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'w7632ybnk9b87wj9'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = '7tt3zf4n6my4rtxz'   # Public Key
+BRAINTREE_PRIVATE_KEY = 'd84626d288c90be80d1a5c2838fe7146'  # Private key
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
